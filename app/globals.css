@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+/* ============================================
+   VAJRA DESIGN SYSTEM — Tailwind v4
+   ============================================ */
+
+@theme {
+  --color-navy-950: #050810;
+  --color-navy-900: #0a0e1a;
+  --color-navy-800: #0f1729;
+  --color-navy-700: #141d2f;
+  --color-navy-600: #1a2540;
+  --color-navy-500: #243054;
+
+  --color-gold-300: #f0e4c4;
+  --color-gold-400: #e8d5a3;
+  --color-gold-500: #d4af37;
+  --color-gold-600: #c9a84c;
+  --color-gold-700: #b8943f;
+  --color-gold-800: #96782e;
+
+  --color-accent-red: #8b2500;
+  --color-accent-orange: #a0522d;
+
+  --color-ivory: #f5f0e8;
+  --color-ivory-dim: #d8d0c4;
+  --color-warm-gray: #9a9184;
+
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ============================================
+   KEYFRAMES
+   ============================================ */
+
+@keyframes grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(3%, -15%); }
+  50% { transform: translate(12%, 9%); }
+  70% { transform: translate(9%, 4%); }
+  90% { transform: translate(-1%, 7%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-navy-900);
+  color: var(--color-ivory);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: var(--color-ivory);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-navy-950); }
+::-webkit-scrollbar-thumb { background: var(--color-gold-700); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold-500); }
+
+/* ============================================
+   GRAIN OVERLAY
+   ============================================ */
+
+.grain-overlay {
+  position: fixed;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 8s steps(10) infinite;
+}
+
+/* ============================================
+   GOLD ELEMENTS
+   ============================================ */
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-500), var(--color-gold-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-500), var(--color-gold-400), var(--color-gold-500), transparent);
+}
+
+.gold-divider-short {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold-500), var(--color-gold-400));
+}
+
+.gold-border {
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 36px;
+  background: linear-gradient(135deg, var(--color-gold-500), var(--color-gold-600));
+  color: var(--color-navy-950);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-500));
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-gold-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 36px;
+  background: transparent;
+  color: var(--color-gold-400);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-gold-500);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-gold-outline:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--color-gold-400);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   BACKGROUNDS
+   ============================================ */
+
+.bg-navy-gradient {
+  background: linear-gradient(180deg, var(--color-navy-900) 0%, var(--color-navy-950) 100%);
+}
+
+.bg-navy-gradient-r {
+  background: linear-gradient(180deg, var(--color-navy-950) 0%, var(--color-navy-900) 100%);
+}
+
+.hero-bg {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+    linear-gradient(180deg, var(--color-navy-950) 0%, var(--color-navy-900) 50%, var(--color-navy-950) 100%);
+}
+
+/* ============================================
+   CARD
+   ============================================ */
+
+.event-card {
+  position: relative;
+  background: linear-gradient(160deg, rgba(15, 23, 41, 0.9), rgba(10, 14, 26, 0.95));
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-500), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.event-card:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.06);
+}
+
+.event-card:hover::before {
+  opacity: 1;
+}
+
+/* ============================================
+   FOCUS (Accessibility)
+   ============================================ */
+
+*:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   3D CANVAS CONTAINER
+   ============================================ */
+
+.scene-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.scene-container canvas {
+  pointer-events: none;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .grain-overlay {
+    animation: none;
+  }
+}
